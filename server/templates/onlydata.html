@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <p>这里仅仅展示了最纯朴的数据，你可以通过数据来观察我们记录了哪一些指标哦.</p>
+
+	<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							Day（第几天）
+						</th>
+						<th>
+                            跑步时间(小时)
+						</th>
+						<th>
+							运动步数
+						</th>
+						<th>
+							俯卧撑数（个）
+						</th>
+                        <th>
+							每日体重（千克）
+						</th>
+					</tr>
+				</thead>
+
+				<tbody>
+                    {% for list in lists %}
+                    <tr>
+                        <td>{{ list.time }}</td>
+                        <td>{{ list.runtime }}</td>
+                        <td>{{ list.stepnum }}</td>
+                        <td>{{ list.pushup }}</td>
+                        <td>{{ list.weight }}</td>
+                    </tr>
+                    {% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+    </div>
+{% endblock %}>

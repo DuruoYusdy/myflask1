@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.bootcss.com/echarts/3.6.2/echarts.common.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 720px;height:480px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+
+        myChart.setOption({
+            title:{
+                text:'每日步数'
+            },
+            tooltip:{},
+            legend:{
+                data:['每日步数']
+            },
+            xAxis:{
+                data:[]
+            },
+            yAxis:{},
+            series:[{
+                name:'每日步数',
+                type: 'bar',
+                data:[]
+            }]
+
+        });
+
+
+        var time = [];
+        var stepnum = [];
+        var lastID = 0;   //哨兵
+
+
+        var update_mychart = function (data) {
+
+            myChart.hideLoading();
+
+            dataLength = data.time.length;
+            lastID += dataLength;
+
+            time = time.slice(dataLength).concat(data.time);
+            stepnum = stepnum.slice(dataLength).concat(data.stepnum.map(parseFloat));
+
+
+            myChart.setOption({
+                xAxis: {
+                    data: time
+                },
+                series: [{
+                    name: '每日步数',
+                    data: stepnum
+                }]
+            });
+
+            if (dataLength == 0) {
+                clearInterval(timeTicket);
+            }
+        }
+
+        myChart.showLoading();
+
+
+        $.get('/dostep').done(update_mychart);
+
+
+        var timeTicket = setInterval(function () {
+            $.post('/dostep',{id : lastID}).done(update_mychart);
+        },1200)
+
+{#        $.get('/dostep').done(function (data) {#}
+{#            myChart.hideLoading();#}
+{#            //填入数据#}
+{#            myChart.setOption({#}
+{#                xAxis:{#}
+{#                    data:data.time#}
+{#                },#}
+{#                series:[{#}
+{#                    name:'每日步数',#}
+{#                    data:data.stepnum.map(parseFloat)#}
+{#                }]#}
+{#            });#}
+{#        });#}
+
+
+
+    </script>
+</body>
+</html>

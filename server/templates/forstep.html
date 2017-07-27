@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <p>这里将会展示你每天运动步数的变化</p>
+
+	<div class="row clearfix">
+		<div class="col-md-3 column">
+            <h4>
+				合格百分比 ( step > 6000 )
+			</h4>
+
+            <h1 style="font-size: 120px;">
+                {{ percentage }}%
+            </h1>
+
+			<p>
+				 <a class="btn" href="#">View details »</a>
+			</p>
+		</div>
+
+		<div class="col-md-9 column">
+              {% include "step.html" %}
+		</div>
+
+	</div>
+{% endblock %}>

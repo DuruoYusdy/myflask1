@@ -1,0 +1,59 @@
+<head>
+<meta charset="utf-8">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+
+
+{#    注意，用表单提取值时，必须必须要设置type='text’，还要设置name属性#}
+    <form action="{{ url_for('forelse')}}"  method="post" class="else">
+
+        <p>用户意见：</p>
+        <p v-text="message2" style="white-space: pre"></p>
+        <textarea type="text" name="text" rows="5" cols="100"  v-model="message2" placeholder="your mood..."></textarea>
+        <br>
+        <input type="radio" id="runoob" value="你可以跑得更快" v-model="picked">
+        <label for="happy">happy</label>
+        <input type="radio" id="google" value="别气馁，继续加油" v-model="picked">
+        <label for="unhappy">unhappy</label>
+        <br>
+        <span v-text="picked">选中值为: </span>
+        <br>
+        <br>
+        <input type="submit" value="Submit Now">
+
+
+    </form>
+
+
+</div>
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>POST</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for list in lists %}
+        <tr>
+            <td>{{ list.post }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<script>
+new Vue({
+    el: '#app',
+    data: {
+	    picked : '选择你的心情',
+        message2:'please enter your mood here'
+    }
+})
+</script>
+</body>

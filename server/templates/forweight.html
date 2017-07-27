@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <p>这里将会展示你体重的变化</p>
+
+	<div class="row clearfix">
+		<div class="col-md-3 column">
+			<h2>
+				Heading
+			</h2>
+			<p>
+				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+			</p>
+			<p>
+				 <a class="btn" href="#">View details »</a>
+			</p>
+		</div>
+		<div class="col-md-9 column">
+			{% include "weight.html" %}
+		</div>
+
+	</div>
+{% endblock %}>

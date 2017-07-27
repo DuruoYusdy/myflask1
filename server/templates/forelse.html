@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h4>这里将会展示你心情的变化</h4>
+
+	<div class="row clearfix">
+		<div class="col-md-3 column">
+			<h2>
+				Heading
+			</h2>
+			<p>
+				在这个页面你可以提交你的心情，或者随便写点什么，或者像我们提意见，一切都取决于你自己
+            </p>
+			<p>
+				 <a class="btn" href="#">View details »</a>
+			</p>
+		</div>
+        <div class="col-md-1 column">
+
+		</div>
+		<div class="col-md-8 column">
+	        {%  include "else.html" %}
+		</div>
+
+	</div>
+{% endblock %}>

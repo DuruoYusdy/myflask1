@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/3.6.2/echarts.common.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="jumbotron"  style="background-image:url(../static/images/door.png)">
+				<h1>
+					Hello, world!
+				</h1>
+                <h3>
+                    欢迎来到我的俱乐部
+                </h3>
+
+{#				<p>#}
+{#					 <a class="btn btn-primary btn-large" href="#">获得更多信息</a>#}
+{#				</p>#}
+			</div>
+
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">TryFlask</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							 <a href="{{ url_for('main') }}">简介</a>
+						</li>
+						<li>
+							 <a href="{{ url_for('onlydata') }}">原始数据</a>
+						</li>
+						<li class="dropdown">
+							 <a class="dropdown-toggle" href="#" data-toggle="dropdown">可视化<strong class="caret"></strong></a>
+							<ul class="dropdown-menu">
+								<li>
+									 <a href="{{ url_for('forstep') }}">运动步数</a>
+								</li>
+								<li class="divider">
+								</li>
+								<li>
+									 <a href="{{ url_for('forweight') }}">体重变化</a>
+								</li>
+								<li class="divider">
+								</li>
+								<li>
+									 <a href="{{ url_for('forelse') }}">其他指标</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input class="form-control" type="text" />
+						</div> <button class="btn btn-default" type="submit">Submit</button>
+					</form>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							 <a href="#">个人信息</a>
+                        </li>
+                        <li>
+                            {% if g.user.is_authenticated %}
+                             <a href="{{ url_for('logout') }}">Log Out</a>
+						    {% endif %}
+                        </li>
+					</ul>
+				</div>
+
+			</nav>
+		</div>
+	</div>
+    {% block content %}
+
+    {% endblock %}
+
+</div>
+</body>
+</html>
